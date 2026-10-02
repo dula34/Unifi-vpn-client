@@ -123,6 +123,9 @@ To add this integration to the default HACS store, follow
 and topics on GitHub, both validation actions must pass, and it needs at least one release. Then open a PR
 against [hacs/default](https://github.com/hacs/default).
 
+The HACS action ignores generic topics such as `hacs`, `home-assistant`, `homeassistant`, `integration` and
+`hacs-integration`. At least one specific topic is required, e.g. `unifi`, `ubiquiti` or `vpn`.
+
 ## License
 
 [Apache License 2.0](LICENSE)
