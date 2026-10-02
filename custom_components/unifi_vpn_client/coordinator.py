@@ -21,6 +21,7 @@ class UniFiVpnCoordinator(DataUpdateCoordinator[dict[str, dict[str, Any]]]):
     """Polls VPN client networks from the gateway."""
 
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry, api: UniFiVpnApi) -> None:
+        """Initialize the coordinator with the API client for this entry."""
         super().__init__(
             hass,
             _LOGGER,
@@ -31,6 +32,7 @@ class UniFiVpnCoordinator(DataUpdateCoordinator[dict[str, dict[str, Any]]]):
         self.api = api
 
     async def _async_update_data(self) -> dict[str, dict[str, Any]]:
+        """Fetch VPN client networks, mapping auth errors to a reauth flow."""
         try:
             return await self.api.get_vpn_clients()
         except UniFiVpnAuthError as err:

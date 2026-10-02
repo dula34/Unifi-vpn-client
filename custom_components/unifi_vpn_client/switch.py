@@ -48,6 +48,7 @@ class UniFiVpnClientSwitch(CoordinatorEntity[UniFiVpnCoordinator], SwitchEntity)
     _attr_icon = "mdi:vpn"
 
     def __init__(self, coordinator: UniFiVpnCoordinator, network_id: str) -> None:
+        """Initialize the switch for the given VPN client network id."""
         super().__init__(coordinator)
         entry = coordinator.config_entry
         self.network_id = network_id
@@ -63,34 +64,42 @@ class UniFiVpnClientSwitch(CoordinatorEntity[UniFiVpnCoordinator], SwitchEntity)
 
     @property
     def _network(self) -> dict[str, Any] | None:
+        """Return the current network object, or None if it was removed."""
         return self.coordinator.data.get(self.network_id)
 
     @property
     def available(self) -> bool:
+        """Return True if the coordinator is healthy and the network still exists."""
         return super().available and self._network is not None
 
     @property
     def name(self) -> str:
+        """Return the VPN client name as configured on the gateway."""
         net = self._network
         return net.get("name", self._fallback_name) if net else self._fallback_name
 
     @property
     def is_on(self) -> bool | None:
+        """Return True if the VPN client network is enabled."""
         net = self._network
         return net.get("enabled", True) if net else None
 
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
+        """Expose the UniFi network id and VPN type."""
         net = self._network or {}
         return {"network_id": self.network_id, "vpn_type": net.get("vpn_type")}
 
     async def async_turn_on(self, **kwargs: Any) -> None:
+        """Enable the VPN client network."""
         await self._async_set(True)
 
     async def async_turn_off(self, **kwargs: Any) -> None:
+        """Disable the VPN client network."""
         await self._async_set(False)
 
     async def _async_set(self, enabled: bool) -> None:
+        """Push the new state to the gateway, update optimistically, then refresh."""
         net = self._network
         if net is None:
             raise HomeAssistantError(f"VPN client {self.name} not found on gateway")

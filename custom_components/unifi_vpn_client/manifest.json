@@ -1,11 +1,12 @@
 {
   "domain": "unifi_vpn_client",
   "name": "UniFi VPN Client",
-  "codeowners": ["@vlado"],
+  "codeowners": ["@dula34"],
   "config_flow": true,
-  "documentation": "https://github.com/vlado/unifi_vpn_client",
+  "documentation": "https://github.com/dula34/Unifi-vpn-client",
   "integration_type": "hub",
   "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/dula34/Unifi-vpn-client/issues",
   "requirements": [],
   "version": "1.0.0"
 }
