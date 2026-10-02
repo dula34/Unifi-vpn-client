@@ -1,0 +1,31 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "UniFi VPN Client",
+        "description": "Použi lokálny UniFi OS účet bez MFA.",
+        "data": {
+          "host": "Adresa gateway",
+          "username": "Používateľ",
+          "password": "Heslo",
+          "site": "Site",
+          "verify_ssl": "Overovať SSL certifikát"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Opätovné prihlásenie",
+        "data": { "password": "Heslo" }
+      }
+    },
+    "error": {
+      "cannot_connect": "Nepodarilo sa pripojiť ku gateway.",
+      "invalid_auth": "Nesprávne meno alebo heslo.",
+      "no_vpn_clients": "Na tejto site sa nenašiel žiadny VPN klient.",
+      "unknown": "Neočakávaná chyba."
+    },
+    "abort": {
+      "already_configured": "Táto gateway/site je už nakonfigurovaná.",
+      "reauth_successful": "Prihlásenie bolo úspešné."
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "domain": "unifi_vpn_client",
+  "name": "UniFi VPN Client",
+  "codeowners": ["@vlado"],
+  "config_flow": true,
+  "documentation": "https://github.com/vlado/unifi_vpn_client",
+  "integration_type": "hub",
+  "iot_class": "local_polling",
+  "requirements": [],
+  "version": "1.0.0"
+}
